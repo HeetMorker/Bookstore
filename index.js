@@ -2,9 +2,8 @@ const express =require("express")
 const app =express();
 const User = require("./database");
 
-
-
 app.set("view engine","ejs");
+app.use(express.static('public'));
 app.use(express.urlencoded({extended:false}))
 
 app.get("/",async(req,res)=>{
@@ -16,15 +15,15 @@ app.get("/",async(req,res)=>{
   
 })
 
-app.post("/register",async(req,res)=>{
-    const {name,email,password}=req.body;
-    const newuser = new User({name,email,password});
+app.post("/add-books",async(req,res)=>{
+    const {title,book_type,stock,val_currency,timestamp,author}=req.body;
+    const newuser = new User({title,book_type,stock,val_currency,timestamp,author});
     const usersave = await newuser.save();
     res.redirect("/");
 })
 
-app.get("/register",(req,res)=>{
-    res.render("register");
+app.get("/add-books",(req,res)=>{
+    res.render("add-books");
 })
 
 app.get("/edit/:id",async(req,res)=>{
@@ -41,9 +40,9 @@ app.get("/edit/:id",async(req,res)=>{
 
 app.post("/update/:id",async(req,res)=>{
     const {id} =req.params;
-    const {name,email,password}=req.body;
+    const {title,book_type,stock,val_currency,timestamp,author}=req.body;
     const updateuser = await User.findByIdAndUpdate({_id:id},
-        {name,email,password},
+        {title,book_type,stock,val_currency,timestamp,author},
         {new:true})
     res.redirect("/");
 })
@@ -53,12 +52,6 @@ app.get("/delete/:id",async(req,res)=>{
 const deleteuser =await User.findByIdAndDelete({_id:id});
 res.redirect("/");
 })
-
-
-
-
-
-
 
 app.listen(5000,()=>{
     console.log("server listeninig on portno:5000");

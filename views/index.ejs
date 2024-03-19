@@ -1,38 +1,228 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
-</head>
-<body>
-    <% if (users!="") { %>
-        <table>
-            <thead>
-                <tr>
-                    <th>Sno</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% users.forEach((user,index) => { %>
-                 <tr>
-                    <td><%= index+1 %></td>
-                    <td><%= user.name %></td>
-                    <td><%= user.email %></td>
-                    <td>
-                        <a href="/edit/<%= user._id %>">Update</a>
-                        <a href="/delete/<%= user._id %>">Delete</a>
-                    </td>
-                 </tr>
-                <% }) %>
-            </tbody>
-        </table>
-    <% } else{ %>
-        <h1>NO USER FOUND</h1>
-        <% }  %>   
-</body>
-</html>
+    <meta name="description" content="Theta is a bootstrap &amp; laravel admin dashboard template">
+    <meta name="keywords" content="admin, admin dashboard, admin panel, admin template, analytics, bootstrap 4, crm, laravel admin, responsive, sass support, ui kits">
+    <meta name="author" content="Themesbox17">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <title>Book Store</title>
+    <!-- Switchery css -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/icons.css" rel="stylesheet" type="text/css">
+    <link href="/css/flag-icon.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <!-- End css -->
+  </head>
+  <body class="vertical-layout">
+  
+    <!-- Start Containerbar -->
+    <div id="containerbar">
+        <!-- Start Leftbar -->
+        <div class="leftbar">
+            <!-- Start Sidebar -->
+            <div class="sidebar">
+                <!-- Start Logobar -->
+                <div class="logobar">
+                    <a href="index.html" class="logo logo-large"><img src="/images/logo.svg" class="img-fluid" alt="logo"></a>
+                    <a href="index.html" class="logo logo-small"><img src="/images/small_logo.svg" class="img-fluid" alt="logo"></a>
+                </div>
+                <!-- End Logobar -->
+                <!-- Start Navigationbar -->
+                <div class="navigationbar">
+                    <ul class="vertical-menu">
+                        <li class="vertical-header">Main</li>
+                        <li>
+                            <a href="/">
+                              <img src="/images/svg-icon/dashboard.svg" class="img-fluid" alt="dashboard"><span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/add-books">
+                              <img src="/images/svg-icon/pages.svg" class="img-fluid" alt="dashboard"><span>Add Books</span>
+                            </a>
+                        </li>                         
+                    </ul>
+                </div>
+                <!-- End Navigationbar -->
+            </div>
+            <!-- End Sidebar -->
+        </div>
+        <!-- End Leftbar -->
+        <!-- Start Rightbar -->
+        <div class="rightbar">
+            <!-- Start Topbar Mobile -->
+            <div class="topbar-mobile">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="mobile-logobar">
+                            <a href="index.html" class="mobile-logo"><img src="/images/logo.svg" class="img-fluid" alt="logo"></a>
+                        </div>
+                        <div class="mobile-togglebar">
+                            <ul class="list-inline mb-0">
+                                <li class="list-inline-item">
+                                    <div class="topbar-toggle-icon">
+                                        <a class="topbar-toggle-hamburger" href="javascript:void();">
+                                            <img src="/images/svg-icon/horizontal.svg" class="img-fluid menu-hamburger-horizontal" alt="horizontal">
+                                           <img src="/images/svg-icon/verticle.svg" class="img-fluid menu-hamburger-vertical" alt="verticle">
+                                         </a>
+                                     </div>
+                                </li>
+                                <li class="list-inline-item">
+                                    <div class="menubar">
+                                        <a class="menu-hamburger" href="javascript:void();">
+                                           <img src="/images/svg-icon/collapse.svg" class="img-fluid menu-hamburger-collapse" alt="collapse">
+                                           <img src="/images/svg-icon/close.svg" class="img-fluid menu-hamburger-close" alt="close">
+                                         </a>
+                                     </div>
+                                </li>                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Start Topbar -->
+            <div class="topbar">
+                <!-- Start row -->
+                <div class="row align-items-center">
+                    <!-- Start col -->
+                    <div class="col-md-12 align-self-center">
+                        <div class="togglebar">
+                            <ul class="list-inline mb-0">
+                                <li class="list-inline-item">
+                                    <div class="menubar">
+                                        <a class="menu-hamburger" href="javascript:void();">
+                                           <img src="/images/svg-icon/collapse.svg" class="img-fluid menu-hamburger-collapse" alt="collapse">
+                                           <img src="/images/svg-icon/close.svg" class="img-fluid menu-hamburger-close" alt="close">
+                                         </a>
+                                     </div>
+                                </li>
+                                <li class="list-inline-item">
+                                    <div class="searchbar">
+                                        <form>
+                                            <div class="input-group">
+                                              <input type="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
+                                              <div class="input-group-append">
+                                                <button class="btn" type="submit" id="button-addon2"><img src="/images/svg-icon/search.svg" class="img-fluid" alt="search"></button>
+                                              </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                </div> 
+                <!-- End row -->
+            </div>
+            <!-- End Topbar -->
+            <!-- Start Breadcrumbbar -->                    
+            <div class="breadcrumbbar">
+                <div class="row align-items-center">
+                    <div class="col-md-8 col-lg-8">
+                        <h4 class="page-title">Books Information</h4>
+                    </div>
+                </div>          
+            </div>
+            <!-- End Breadcrumbbar -->
+            <!-- Start Contentbar -->    
+            <div class="contentbar">                
+                <!-- Start row -->
+                <div class="row">
+                    <!-- Start col -->
+                    <div class="col-lg-12">
+                        <div class="card m-b-30">
+                            <!-- <div class="card-header">
+                                <h5 class="card-title">Edit with button</h5>
+                            </div> -->
+                            <div class="card-body">
+                                <!-- <h6 class="card-subtitle">Export data to Copy, CSV, Excel &amp; Note.</h6> -->
+                                <div class="table-responsive text-center h-100">
+                                    <!-- DISPLAY DATA ON TABLE -->
+                                    <% if (users!="") { %>
+                                        <table class="table table-striped table-bordered" id="edit-click">
+                                            <thead>
+                                                <tr>
+                                                    <th>Sno</th>
+                                                    <th>Title</th>
+                                                    <th>Book Type</th>
+                                                    <th>Stock</th>
+                                                    <th>Price</th>
+                                                    <th>Name of Author</th>
+                                                    <!-- <th>Timestamp</th> -->
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% users.forEach((user,index) => { %>
+                                                 <tr>
+                                                    <td><%= index+1 %></td>
+                                                    <td><%= user.title %></td>
+                                                    <td><%= user.book_type %></td>
+                                                    <td><%= user.stock %></td>
+                                                    <td><%= user.val_currency %></td>
+                                                    <td><%= user.author %></td>
+                                                    <!-- <td><%= user.timestamp %></td> -->
+                                                    <td style="white-space: nowrap; width: 15%;"><div class="tabledit-toolbar btn-toolbar" style="text-align: left;">
+                                                        <div class="btn-group btn-group-sm" style="float: none;">
+                                                           <a href="/edit/<%= user._id %>"> <button type="button" class=" btn btn-sm btn-info" style="float: none; margin: 5px;">Edit</button></a>
+                                                           <a href="/delete/<%= user._id %>"> <button type="button" class=" btn btn-sm btn-danger" style="float: none; margin: 5px;">Delete</button></a>
+                                                            <!-- <button type="button" class="tabledit-delete-button btn btn-sm btn-info" style="float: none; margin: 5px;"><span class="ti-trash"></span></button> -->
+                                                        </div>
+                                                    </td>
+                                                 </tr>
+                                                <% }) %>
+                                            </tbody>
+                                        </table>
+                                    <% } else{ %>
+                                        <!-- <h1>NO BOOKS FOUND</h1> -->
+                                        <img src="/images/pricing/no-book.jpg" alt="">
+                                        <% }  %>   
+                                </div>
+            
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+
+                </div>
+                <!-- End row -->
+            </div>
+            <!-- End Contentbar -->
+            <!-- Start Footerbar -->
+            <div class="footerbar">
+                <footer class="footer">
+                    <p class="mb-0">© 2020 Theta - All Rights Reserved.</p>
+                </footer>
+            </div>
+            <!-- End Footerbar -->
+        </div>
+        <!-- End Rightbar -->
+    </div>
+    <!-- End Containerbar -->
+    <!-- Start js -->        
+    <script src="/js/jquery.min.js"></script>
+    <!-- <script src="/js/popper.min.js"></script> -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- <script src="/js/modernizr.min.js"></script> -->
+    <!-- <script src="/js/detect.js"></script> -->
+    <!-- <script src="/js/jquery.slimscroll.js"></script> -->
+    <!-- <script src="/js/vertical-menu.js"></script> -->
+    <!-- Switchery js -->
+    <!-- <script src="/plugins/switchery/switchery.min.js"></script> -->
+    <!-- Parsley js -->
+    <script src="/plugins/validatejs/validate.min.js"></script>
+    <!-- Validate js -->
+    <script src="/js/custom/custom-validate.js"></script>
+    <script src="/js/custom/custom-form-validation.js"></script>
+    <!-- Core js -->
+    <!-- <script src="/js/core.js"></script> -->
+    <!-- End js -->
+  
+  </body></html>
+
+
+
+
+
+
